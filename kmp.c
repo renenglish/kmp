@@ -39,13 +39,17 @@ int kmp(const char *s, const char *sub){
 	if(j == lsub){
 		return i-j;
 	}
-	return 0;
+	return -1;
 }
 
 int main(int argc, char *argv[]){
-	const char *s = "abacababcababac";
-	const char *sub = "abaabcac";
+	const char *s = "aaaaaaaaaaaaaaaaaaaaaaaaaab";
+	const char *sub = "abaabc";
 	int idx = kmp(s, sub);
+	if(idx == -1){
+		printf("Not found!\n");
+		return 1;
+	}
 	printf("idx:%d\n", idx);
 	printf("%s\n", s);
 	while(idx-- > 0){
