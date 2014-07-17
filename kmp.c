@@ -50,7 +50,7 @@ int main(int argc, char *argv[]){
 	const char *sub = "ababac";
 	int idx = kmp(s, sub);
 	if(idx == -1){
-		printf("Not found!\n");
+		printf("Can not find %s in %s!\n", sub, s);
 		return 1;
 	}
 	printf("idx:%d\n", idx);
