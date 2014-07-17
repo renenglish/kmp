@@ -18,6 +18,9 @@ int kmp(const char *s, const char *sub){
 			if(sub[n] == sub[j]){
 				++n;
 			}else{
+				if(n!=0){
+					--j;
+				}
 				n = 0;
 			}
 			++j;
@@ -44,7 +47,7 @@ int kmp(const char *s, const char *sub){
 
 int main(int argc, char *argv[]){
 	const char *s = "aaaaaaaaaaaaaaaaaaaaaaaaaab";
-	const char *sub = "abaabc";
+	const char *sub = "ababac";
 	int idx = kmp(s, sub);
 	if(idx == -1){
 		printf("Not found!\n");
