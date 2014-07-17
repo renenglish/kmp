@@ -11,22 +11,19 @@ int kmp(const char *s, const char *sub){
 	int i = 0;
 	int n = 0;
 	int j = 0;
-	for(i = 0; sub[i]; ++i){
-		j = 1;
-		n = 0;
-		while(j < i){
-			if(sub[n] == sub[j]){
-				++n;
-			}else{
-				if(n != 0){
-					--j;
-				}
-				n = 0;
-			}
-			++j;
+	next[0] = 0;
+	char c;
+	for(i = 1; sub[i]; ++i){
+		n = next[i-1];
+		c = sub[n];
+		if(i-1 <= n){
+			next[i] = 0;
+		}else if(c == sub[i-1]){
+			next[i] = n + 1;
+		}else{
+			next[i] = 0;
 		}
-		next[i] = n;
-		printf("next[%d]=%d\n", i, n);
+		printf("next[%d]=%d\n", i, next[i]);
 	}
 
 	/*Search the substring*/
@@ -47,7 +44,7 @@ int kmp(const char *s, const char *sub){
 
 int main(int argc, char *argv[]){
 	const char *s = "abcabdeababadababaeabaabcac";
-	const char *sub = "abaabc";
+	const char *sub = "abadef";
 	int idx = kmp(s, sub);
 	if(idx == -1){
 		printf("Can not find %s in %s!\n", sub, s);
