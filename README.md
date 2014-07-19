@@ -1,1 +1,1 @@
-Practice of KMP algrithom
+Practice of KMP algorithm
